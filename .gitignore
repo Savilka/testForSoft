@@ -2,4 +2,5 @@
 vendor
 .env
 public/upload/*
+!public/upload/.gitkeep
 composer.lock
