@@ -1,0 +1,392 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Набор API-методов для сохранения событий и получения статистики",
+    "description": "",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api/"
+    }
+  ],
+  "paths": {
+    "/recipe/all": {
+      "get": {
+        "tags": [
+          "Recipe"
+        ],
+        "summary": "Получить все рецепты",
+        "description": "Получить все рецепты",
+        "responses": {
+          "200": {
+            "description": "Рецепты успешно получены"
+          },
+          "500": {
+            "description": "Ошибка базы данных"
+          }
+        }
+      }
+    },
+    "/recipe/{id}": {
+      "get": {
+        "tags": [
+          "Recipe"
+        ],
+        "summary": "Получить рецепт по id",
+        "description": "Получить рецепт по id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id рецепта",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Рецепт получен"
+          },
+          "404": {
+            "description": "Рецепт не найден"
+          },
+          "500": {
+            "description": "Ошибка базы данных"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Recipe"
+        ],
+        "summary": "Удалить рецепт по id",
+        "description": "Удалить рецепт по id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id рецепта",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Рецепт удален"
+          },
+          "500": {
+            "description": "Ошибка базы данных"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Recipe"
+        ],
+        "summary": "Обновить рецепт по id",
+        "description": "Обновить рецепт по id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id рецепта",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecipeForUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Рецепт обновлен"
+          },
+          "404": {
+            "description": "Рецепт не найден"
+          },
+          "500": {
+            "description": "Ошибка базы данных"
+          }
+        }
+      }
+    },
+    "/recipe/addRecipe": {
+      "post": {
+        "tags": [
+          "Recipe"
+        ],
+        "summary": "Добавить рецепт",
+        "description": "Добавить рецепт",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recipe"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Рецепт Создан",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка базы данных"
+          }
+        }
+      }
+    },
+    "/ingredient/all": {
+      "get": {
+        "tags": [
+          "Ingredient"
+        ],
+        "summary": "Получить все ингредиенты",
+        "description": "Получить все ингредиенты",
+        "responses": {
+          "200": {
+            "description": "Ингредиенты успешно получены"
+          },
+          "500": {
+            "description": "Ошибка базы данных"
+          }
+        }
+      }
+    },
+    "/ingredient/{id}": {
+      "get": {
+        "tags": [
+          "Ingredient"
+        ],
+        "summary": "Получить ингредиент по id",
+        "description": "Получить ингредиент по id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id ингредиента",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ингредиент получен"
+          },
+          "404": {
+            "description": "Ингредиент не найден"
+          },
+          "500": {
+            "description": "Ошибка базы данных"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Ingredient"
+        ],
+        "summary": "Удалить ингредиент по id",
+        "description": "Удалить ингредиент по id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id ингредиента",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ингредиент удален"
+          },
+          "500": {
+            "description": "Ошибка базы данных"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Ingredient"
+        ],
+        "summary": "Обновить ингредиент по id",
+        "description": "Обновить ингредиент по id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id ингредиента",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IngredientForUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ингредиент обновлен"
+          },
+          "404": {
+            "description": "Ингредиент не найден"
+          },
+          "500": {
+            "description": "Ошибка базы данных"
+          }
+        }
+      }
+    },
+    "/ingredient/addIngredient": {
+      "post": {
+        "tags": [
+          "Ingredient"
+        ],
+        "summary": "Добавить ингредиент",
+        "description": "Добавить ингредиент",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ingredient"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ингредиент добавлен",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ошибка базы данных"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Recipe": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "steps": {
+            "type": "string"
+          },
+          "path_to_photo": {
+            "type": "string"
+          },
+          "ingredients": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/IngredientForRecipe"
+            }
+          }
+        }
+      },
+      "IngredientForRecipe": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "amount": {
+            "type": "integer"
+          }
+        }
+      },
+      "RecipeForUpdate": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "steps": {
+                "type": "string"
+              },
+              "path_to_photo": {
+                "type": "string"
+              },
+              "ingredients": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/IngredientForRecipe"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Ingredient": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          }
+        }
+      },
+      "IngredientForUpdate": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "unit": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
