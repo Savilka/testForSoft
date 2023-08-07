@@ -32,6 +32,6 @@ $app->group('/api', function (RouteCollectorProxy $group) {
     });
 });
 
-$app->addErrorMiddleware(true, false, false);
+$app->addErrorMiddleware(false, false, false);
 
 $app->run();
